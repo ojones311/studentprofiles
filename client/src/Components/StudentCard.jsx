@@ -1,18 +1,19 @@
 import React from 'react'
+import '../Styles/StudentCard.css'
 
+// client/src/Styles/StudentCard.css
 const StudentCard = ({student}) => {
     return(
         //Need id grades city name email and pic
-        <div>
-            <div>
-                <p>{student.lastName}</p>
-                <p>{student.firstName}</p>
-                <h2></h2>
-                <h5></h5>
-                <p></p>
+        <div className='main-card'>
+            <div className='left-side'>
+                <img src={student.pic}></img>
+                <h3>{student.firstName}{' '}{student.lastName}</h3>
+                
             </div>
-            <div>
-                <h5>{student.company}</h5>
+            <div className='right-side'>
+                <h5>{student.skill}{' at '}{student.company}</h5>
+                <h5>{student.email}</h5>
             </div>
         </div>
     )

@@ -1,6 +1,7 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
 
+import '../Styles/Dashboard.css'
 import StudentCard from './StudentCard'
 
 const Dashboard = () => {
@@ -27,18 +28,13 @@ const Dashboard = () => {
     }, [])
     return(
         <>
-        <div className='main'>
-            <ul>
+            <div className='main'>
                 {studentList && studentList.students.map(elem => (
                     <>
                         <StudentCard student={elem}></StudentCard>
                     </>
                 ))}
-                
-            </ul>
-            <p>Testing123</p>
-        </div>
-
+            </div>
         </>
     )
 }
