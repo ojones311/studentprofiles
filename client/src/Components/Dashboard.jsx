@@ -26,14 +26,20 @@ const Dashboard = () => {
         
     }, [])
     return(
+        <>
         <div className='main'>
             <ul>
                 {studentList && studentList.students.map(elem => (
-                    <li>{elem.firstName}</li>
+                    <>
+                        <StudentCard student={elem}></StudentCard>
+                    </>
                 ))}
+                
             </ul>
             <p>Testing123</p>
         </div>
+
+        </>
     )
 }
 
