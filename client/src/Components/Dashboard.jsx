@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react'
 
 import '../Styles/Dashboard.css'
 import StudentCard from './StudentCard'
+import Searchbar from './Searchbar'
 
 const Dashboard = () => {
 
@@ -19,15 +20,13 @@ const Dashboard = () => {
         }
     }
 
-    const displayStudentList = () => {
-        // Iterate through arr and display each key/value as a card 
-    }
     useEffect(async() => {
         fetchStudentList()
         
     }, [])
     return(
         <>
+            <Searchbar />
             <div className='main'>
                 {studentList && studentList.students.map(elem => (
                     <>
