@@ -8,6 +8,7 @@ import Searchbar from './Searchbar'
 const Dashboard = () => {
 
     const [studentList, setStudentList] = useState(null)
+    const [input, setInput] = useState('')
 
     const fetchStudentList = async () => {
         try{
@@ -20,17 +21,29 @@ const Dashboard = () => {
         }
     }
 
-    useEffect(async() => {
-        fetchStudentList()
-        
-    }, [])
+    //Loop through student obj and see if searchTerm is included in the name 
+    const updateSearch = (input) => {
+        let filteredList =  studentList.filter((elem) => {
+            
+        })
+        setInput(input)
+    }
+
+    useEffect(async() => {fetchStudentList()}, [])
+
     return(
         <>
-            <Searchbar />
+            <Searchbar 
+                input={input} 
+                onChange={updateSearch}
+            />
             <div className='main'>
                 {studentList && studentList.students.map(elem => (
                     <>
-                        <StudentCard student={elem}></StudentCard>
+                        <StudentCard 
+                            key={elem.id} 
+                            student={elem}
+                        />
                     </>
                 ))}
             </div>
