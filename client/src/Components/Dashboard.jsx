@@ -15,25 +15,26 @@ const Dashboard = () => {
         try{
            const response = await fetch(`https://api.hatchways.io/assessment/students`)
            const students = await response.json()
-        //    console.log(students)
            setStudentList(students)
+           setFilteredList(students.students)
         }catch(error){
             console.log('error: ', error)
         }
     }
 
-    //Loop through student obj and see if searchTerm is included in the name 
     const updateSearch = (input) => {
-        // console.log(studentList.students)
+        let formattedInput = input.replace(/ /g, "").toLowerCase()
         let filteredList = studentList.students.filter((elem) => {
             let fullName = elem.firstName + elem.lastName
-            return fullName.toLowerCase().includes(input.toLowerCase())
+            return fullName.toLowerCase().includes(formattedInput)
         })
         setInput(input)
         setFilteredList(filteredList)
     }
-
-    useEffect(async() => {fetchStudentList()}, [])
+    
+    useEffect(async() => {
+        fetchStudentList()
+    }, [])
 
     return(
         <>
@@ -41,17 +42,8 @@ const Dashboard = () => {
                 input={input} 
                 onChange={updateSearch}
             />
-            {/* <div className='main'>
-                {studentList && studentList.students.map(elem => (
-                    <>
-                        <StudentCard 
-                            key={elem.id} 
-                            student={elem}
-                        />
-                    </>
-                ))}
-            </div> */}
             <div className='main'>
+
                 {filteredList && filteredList.map(elem => (
                     <>
                         <StudentCard 
